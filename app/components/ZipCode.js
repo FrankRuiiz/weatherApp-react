@@ -1,5 +1,4 @@
 var React = require('react');
-// var Link = require('react-router-dom').Link;
 var api = require('../utils/api');
 
 class ZipCode extends React.Component {
@@ -15,10 +14,13 @@ class ZipCode extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    //   api.fetchCurrentWeather(this.state.location);
-    console.log(this.props);
     this.props.onSubmitLocation(this.state.location);
+
+    this.setState(function() {
+      return {
+        location: ''
+      };
+    });
   }
 
   handleChange(event) {

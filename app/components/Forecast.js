@@ -1,11 +1,18 @@
 var React = require('react');
+var api = require('../utils/api');
 
-function Forecast() {
-  return (
-    <div>
-      <h1>Forecast component</h1>
-    </div>
-  );
+class Forecast extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Forecast component</h1>
+      </div>
+    );
+  }
 }
 
 module.exports = Forecast;
