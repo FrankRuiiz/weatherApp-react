@@ -1,5 +1,5 @@
 var React = require('react');
-
+// var Link = require('react-router-dom').Link;
 var api = require('../utils/api');
 
 class ZipCode extends React.Component {
@@ -16,7 +16,9 @@ class ZipCode extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    api.fetchCurrentWeather(this.state.location);
+    //   api.fetchCurrentWeather(this.state.location);
+    console.log(this.props);
+    this.props.onSubmitLocation(this.state.location);
   }
 
   handleChange(event) {
@@ -29,24 +31,27 @@ class ZipCode extends React.Component {
   }
 
   render() {
+    var location = this.state.location;
+    var match = this.props.match;
+
     return (
-      <form className="form-inline my-2 my-lg-0" onSubmit={this.handleSubmit}>
+      <div className="form-inline my-2 my-lg-0">
         <input
           className="form-control mr-sm-2"
           type="search"
           autoComplete="off"
           placeholder="Corona, Ca"
-          value={this.state.location}
+          value={location}
           onChange={this.handleChange}
         />
         <button
           className="btn btn-outline-warning my-2 my-sm-0"
-          type="submit"
           disabled={!this.state.location}
+          onClick={this.handleSubmit}
         >
           Get Weather
         </button>
-      </form>
+      </div>
     );
   }
 }
