@@ -12,7 +12,7 @@ function Header(props) {
         onSubmitLocation={function(location) {
           props.history.push({
             pathname: 'forecast',
-            search: '?city' + location
+            search: '?city=' + location
           });
         }}
       />

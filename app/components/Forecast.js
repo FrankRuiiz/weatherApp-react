@@ -2,6 +2,10 @@ var React = require('react');
 var api = require('../utils/api');
 var queryString = require('query-string');
 
+function DayItem(props) {
+  return <li>lorem ipsum</li>;
+}
+
 class Forecast extends React.Component {
   constructor(props) {
     super(props);
@@ -13,8 +17,8 @@ class Forecast extends React.Component {
     };
   }
 
-  componentDidMount() {
-    var { city } = queryString.parse(this.props.location.search);
+  makeWeatherRequest(props) {
+    var { city } = queryString.parse(props.location.search);
     api.fetchFiveDayWeather(city).then(
       function(data) {
         if (data === null) {
@@ -37,6 +41,17 @@ class Forecast extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    // Check to make sure nextProps are different then current props
+    if (this.props.location.search != nextProps.location.search) {
+      this.makeWeatherRequest(nextProps);
+    }
+  }
+
+  componentDidMount() {
+    this.makeWeatherRequest(this.props);
+  }
+
   render() {
     var loading = this.state.loading;
 
@@ -48,9 +63,16 @@ class Forecast extends React.Component {
       );
     }
 
+    var { city, list } = this.state.data;
+
     return (
       <div style={{ marginTop: '100px' }}>
-        <h1>Weather Data</h1>
+        <h1>{city.name}</h1>
+        <ul>
+          {list.map(function(day) {
+            return <DayItem key={day.dt} day={day} />;
+          })}
+        </ul>
       </div>
     );
   }
