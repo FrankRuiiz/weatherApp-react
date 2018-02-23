@@ -1,9 +1,19 @@
 var React = require('react');
 var api = require('../utils/api');
+var getFormattedDate = require('../utils/helpers').getFormattedDate;
 var queryString = require('query-string');
 
 function DayItem(props) {
-  return <li>lorem ipsum</li>;
+  // console.log(props);
+  const icon = props.day.weather[0].icon;
+  const date = getFormattedDate(props.day.dt);
+  // console.log(icon);
+  return (
+    <li>
+      <img src={'app/images/weather-icons/' + icon + '.svg'} />
+      <p>{date}</p>
+    </li>
+  );
 }
 
 class Forecast extends React.Component {

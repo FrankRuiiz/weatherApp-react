@@ -42,7 +42,7 @@ class ZipCode extends React.Component {
           className="form-control mr-sm-2"
           type="search"
           autoComplete="off"
-          placeholder="Corona, Ca"
+          placeholder="City, State"
           value={location}
           onChange={this.handleChange}
         />
