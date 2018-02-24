@@ -76,7 +76,7 @@ class Forecast extends React.Component {
     var { city, list } = this.state.data;
 
     return (
-      <div style={{ marginTop: '100px' }}>
+      <div className="container" style={{ marginTop: '100px' }}>
         <h1>{city.name}</h1>
         <div className="card-deck">
           {list.map(function(day) {
