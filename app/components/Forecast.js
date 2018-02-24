@@ -4,15 +4,15 @@ var getFormattedDate = require('../utils/helpers').getFormattedDate;
 var queryString = require('query-string');
 
 function DayItem(props) {
-  // console.log(props);
   const icon = props.day.weather[0].icon;
   const date = getFormattedDate(props.day.dt);
-  // console.log(icon);
   return (
-    <li>
-      <img src={'app/images/weather-icons/' + icon + '.svg'} />
-      <p>{date}</p>
-    </li>
+    <div className="card">
+      <img className="card-img-top" src={'app/images/weather-icons/' + icon + '.svg'} alt="weather" />
+      <div className="card-body">
+        <h3 className="card-title">{date}</h3>
+      </div>
+    </div>
   );
 }
 
@@ -78,11 +78,11 @@ class Forecast extends React.Component {
     return (
       <div style={{ marginTop: '100px' }}>
         <h1>{city.name}</h1>
-        <ul>
+        <div className="card-deck">
           {list.map(function(day) {
             return <DayItem key={day.dt} day={day} />;
           })}
-        </ul>
+        </div>
       </div>
     );
   }
