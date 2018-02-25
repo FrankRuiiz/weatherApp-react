@@ -11,7 +11,6 @@ module.exports = {
         API_KEY
     );
     return axios.get(encodedURI).then(function(response) {
-      console.log(response.data);
       return response.data;
     });
   },
@@ -24,7 +23,6 @@ module.exports = {
         '&cnt=5'
     );
     return axios.get(encodedURI).then(function(response) {
-      console.log(response.data);
       return response.data;
     });
   }
