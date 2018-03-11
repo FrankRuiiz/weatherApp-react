@@ -2,15 +2,11 @@ import React from 'react';
 import api from '../utils/api';
 
 class ZipCode extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    location: ''
+  };
 
-    this.state = {
-      location: ''
-    };
-  }
-
-  handleSubmit(event) {
+  handleSubmit = event => {
     this.props.onSubmitLocation(this.state.location);
 
     this.setState(function() {
@@ -18,16 +14,16 @@ class ZipCode extends React.Component {
         location: ''
       };
     });
-  }
+  };
 
-  handleChange(event) {
+  handleChange = event => {
     const value = event.target.value;
     this.setState(() => {
       return {
         location: value
       };
     });
-  }
+  };
 
   render() {
     const location = this.state.location;

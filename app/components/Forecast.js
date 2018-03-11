@@ -21,17 +21,11 @@ function DayItem({ day, onClick }) {
 }
 
 class Forecast extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: true,
-      data: null,
-      error: null
-    };
-
-    // this.handleDayClick = this.handleDayClick.bind(this);
-  }
+  state = {
+    loading: true,
+    data: null,
+    error: null
+  };
 
   componentWillReceiveProps(nextProps) {
     this.city = queryString.parse(nextProps.location.search).city;
@@ -46,7 +40,7 @@ class Forecast extends React.Component {
     this.makeWeatherRequest(this.props);
   }
 
-  makeWeatherRequest(props) {
+  makeWeatherRequest = props => {
     const { city } = queryString.parse(props.location.search);
     fetchFiveDayWeather(city).then(data => {
       if (data === null) {
@@ -62,14 +56,14 @@ class Forecast extends React.Component {
         loading: false
       }));
     });
-  }
+  };
 
-  handleDayClick(city) {
+  handleDayClick = city => {
     this.props.history.push({
       pathname: `details/${this.city}`,
       state: city
     });
-  }
+  };
 
   render() {
     const loading = this.state.loading;

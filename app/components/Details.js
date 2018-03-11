@@ -2,9 +2,6 @@ import React from 'react';
 import { getFormattedDate, convertKelvinToFahrenheit } from '../utils/helpers';
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { state } = this.props.location;
 

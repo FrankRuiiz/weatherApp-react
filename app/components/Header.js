@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import ZipCode from './ZipCode';
 
-export default function Header(props) {
+export default withRouter(function Header(props) {
   return (
     <nav className="navbar navbar-dark bg-dark">
       <a className="navbar-brand" href="#">
@@ -19,4 +19,4 @@ export default function Header(props) {
       />
     </nav>
   );
-}
+});
