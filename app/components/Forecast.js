@@ -1,16 +1,16 @@
-var React = require('react');
-var api = require('../utils/api');
-var getFormattedDate = require('../utils/helpers').getFormattedDate;
-var queryString = require('query-string');
+const React = require('react');
+const api = require('../utils/api');
+const getFormattedDate = require('../utils/helpers').getFormattedDate;
+const queryString = require('query-string');
 
-function DayItem(props) {
-  const icon = props.day.weather[0].icon;
-  const date = getFormattedDate(props.day.dt);
+function DayItem({ day, onClick }) {
+  const icon = day.weather[0].icon;
+  const date = getFormattedDate(day.dt);
   return (
-    <div onClick={props.onClick} className="card">
+    <div onClick={onClick} className="card">
       <img
         className="card-img-top"
-        src={'app/images/weather-icons/' + icon + '.svg'}
+        src={`app/images/weather-icons/${icon}.svg`}
         alt="weather"
       />
       <div className="card-body">
@@ -30,7 +30,7 @@ class Forecast extends React.Component {
       error: null
     };
 
-    this.handleDayClick = this.handleDayClick.bind(this);
+    // this.handleDayClick = this.handleDayClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,38 +47,32 @@ class Forecast extends React.Component {
   }
 
   makeWeatherRequest(props) {
-    var { city } = queryString.parse(props.location.search);
-    api.fetchFiveDayWeather(city).then(
-      function(data) {
-        if (data === null) {
-          return this.setState(function() {
-            return {
-              error: 'There was an error, the city might not be valid.',
-              loading: false
-            };
-          });
-        }
+    const { city } = queryString.parse(props.location.search);
+    api.fetchFiveDayWeather(city).then(data => {
+      if (data === null) {
+        return this.setState(() => ({
+          error: 'There was an error, the city might not be valid.',
+          loading: false
+        }));
+      }
 
-        this.setState(function() {
-          return {
-            error: null,
-            data: data,
-            loading: false
-          };
-        });
-      }.bind(this)
-    );
+      this.setState(() => ({
+        error: null,
+        data: data,
+        loading: false
+      }));
+    });
   }
 
   handleDayClick(city) {
     this.props.history.push({
-      pathname: 'details/' + this.city,
+      pathname: `details/${this.city}`,
       state: city
     });
   }
 
   render() {
-    var loading = this.state.loading;
+    const loading = this.state.loading;
 
     if (loading) {
       return (
@@ -88,7 +82,7 @@ class Forecast extends React.Component {
       );
     }
 
-    var { city, list } = this.state.data;
+    const { city, list } = this.state.data;
 
     return (
       <div className="container" style={{ marginTop: '100px' }}>
@@ -97,7 +91,7 @@ class Forecast extends React.Component {
           {list.map(day => {
             return (
               <DayItem
-                onClick={this.handleDayClick.bind(this, day)}
+                onClick={() => this.handleDayClick(day)}
                 key={day.dt}
                 day={day}
               />

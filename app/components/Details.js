@@ -1,13 +1,12 @@
-var React = require('react');
-var helpers = require('../utils/helpers');
+const React = require('react');
+const helpers = require('../utils/helpers');
 
 class Details extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    console.log(this.props);
-    const state = this.props.location.state;
+    const { state } = this.props.location;
 
     const city = this.props.match.params.city;
     const icon = state.weather[0].icon;

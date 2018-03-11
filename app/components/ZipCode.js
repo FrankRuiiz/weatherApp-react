@@ -1,5 +1,5 @@
-var React = require('react');
-var api = require('../utils/api');
+const React = require('react');
+const api = require('../utils/api');
 
 class ZipCode extends React.Component {
   constructor(props) {
@@ -8,9 +8,6 @@ class ZipCode extends React.Component {
     this.state = {
       location: ''
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
@@ -24,8 +21,8 @@ class ZipCode extends React.Component {
   }
 
   handleChange(event) {
-    var value = event.target.value;
-    this.setState(function() {
+    const value = event.target.value;
+    this.setState(() => {
       return {
         location: value
       };
@@ -33,8 +30,8 @@ class ZipCode extends React.Component {
   }
 
   render() {
-    var location = this.state.location;
-    var match = this.props.match;
+    const location = this.state.location;
+    const match = this.props.match;
 
     return (
       <div className="form-inline my-2 my-lg-0">
@@ -44,12 +41,12 @@ class ZipCode extends React.Component {
           autoComplete="off"
           placeholder="City, State"
           value={location}
-          onChange={this.handleChange}
+          onChange={e => this.handleChange(e)}
         />
         <button
           className="btn btn-outline-warning my-2 my-sm-0"
           disabled={!this.state.location}
-          onClick={this.handleSubmit}
+          onClick={() => this.handleSubmit()}
         >
           Get Weather
         </button>

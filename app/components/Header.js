@@ -11,7 +11,7 @@ function Header(props) {
       <ZipCode
         onSubmitLocation={function(location) {
           props.history.push({
-            pathname: 'forecast',
+            pathname: '/forecast',
             search: '?city=' + location
           });
         }}

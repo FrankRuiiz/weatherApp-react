@@ -1,5 +1,5 @@
-var React = require('react');
-var ZipCode = require('./ZipCode');
+const React = require('react');
+const ZipCode = require('./ZipCode');
 
 function Home(props) {
   return (
@@ -13,10 +13,10 @@ function Home(props) {
             <div className="card-header">Enter a City and State</div>
             <div className="card-body">
               <ZipCode
-                onSubmitLocation={function(location) {
+                onSubmitLocation={location => {
                   props.history.push({
                     pathname: 'forecast',
-                    search: '?city=' + location
+                    search: `?city=${location}`
                   });
                 }}
               />
