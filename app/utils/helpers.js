@@ -23,18 +23,17 @@ const month = {
   '4': 'Dec'
 };
 
-module.exports = {
-  getFormattedDate(dt) {
-    let output = '';
-    const date = new Date(dt * 1000);
-    return (output +=
-      weekday[date.getDay()] +
-      ', ' +
-      month[date.getMonth()] +
-      ' ' +
-      date.getDate());
-  },
-  convertKelvinToFahrenheit(k) {
-    return parseInt(k * (9 / 5) - 459.67) + ' degrees';
-  }
-};
+export function getFormattedDate(dt) {
+  let output = '';
+  const date = new Date(dt * 1000);
+  return (output +=
+    weekday[date.getDay()] +
+    ', ' +
+    month[date.getMonth()] +
+    ' ' +
+    date.getDate());
+}
+
+export function convertKelvinToFahrenheit(k) {
+  return parseInt(k * (9 / 5) - 459.67) + ' degrees';
+}

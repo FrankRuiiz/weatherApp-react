@@ -1,5 +1,5 @@
-const React = require('react');
-const api = require('../utils/api');
+import React from 'react';
+import api from '../utils/api';
 
 class ZipCode extends React.Component {
   constructor(props) {
@@ -55,4 +55,4 @@ class ZipCode extends React.Component {
   }
 }
 
-module.exports = ZipCode;
+export default ZipCode;

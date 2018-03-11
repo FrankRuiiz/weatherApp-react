@@ -1,8 +1,9 @@
-var React = require('react');
-var withRouter = require('react-router-dom').withRouter;
-var ZipCode = require('./ZipCode');
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-function Header(props) {
+import ZipCode from './ZipCode';
+
+export default function Header(props) {
   return (
     <nav className="navbar navbar-dark bg-dark">
       <a className="navbar-brand" href="#">
@@ -19,5 +20,3 @@ function Header(props) {
     </nav>
   );
 }
-
-module.exports = withRouter(Header);

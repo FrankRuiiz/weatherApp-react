@@ -1,7 +1,8 @@
-const React = require('react');
-const ZipCode = require('./ZipCode');
+import React from 'react';
 
-function Home(props) {
+import ZipCode from './ZipCode';
+
+export default function Home(props) {
   return (
     <div
       className="home"
@@ -27,5 +28,3 @@ function Home(props) {
     </div>
   );
 }
-
-module.exports = Home;

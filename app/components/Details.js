@@ -1,5 +1,5 @@
-const React = require('react');
-const helpers = require('../utils/helpers');
+import React from 'react';
+import { getFormattedDate, convertKelvinToFahrenheit } from '../utils/helpers';
 
 class Details extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Details extends React.Component {
 
     const city = this.props.match.params.city;
     const icon = state.weather[0].icon;
-    const date = helpers.getFormattedDate(state.dt);
+    const date = getFormattedDate(state.dt);
     const description = state.weather[0].description;
     const min_temp = state.temp.min;
     const max_temp = state.temp.max;
@@ -28,8 +28,8 @@ class Details extends React.Component {
         <div className="details-bottom">
           <p>{city}</p>
           <p>{description}</p>
-          <p>min temp: {helpers.convertKelvinToFahrenheit(min_temp)}</p>
-          <p>max temp: {helpers.convertKelvinToFahrenheit(max_temp)}</p>
+          <p>min temp: {convertKelvinToFahrenheit(min_temp)}</p>
+          <p>max temp: {convertKelvinToFahrenheit(max_temp)}</p>
           <p>humidity: {humidity}</p>
         </div>
       </div>
@@ -37,4 +37,4 @@ class Details extends React.Component {
   }
 }
 
-module.exports = Details;
+export default Details;

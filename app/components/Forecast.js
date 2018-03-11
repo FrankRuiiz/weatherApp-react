@@ -1,7 +1,7 @@
-const React = require('react');
-const api = require('../utils/api');
-const getFormattedDate = require('../utils/helpers').getFormattedDate;
-const queryString = require('query-string');
+import React from 'react';
+import { fetchFiveDayWeather } from '../utils/api';
+import { getFormattedDate } from '../utils/helpers';
+import queryString from 'query-string';
 
 function DayItem({ day, onClick }) {
   const icon = day.weather[0].icon;
@@ -48,7 +48,7 @@ class Forecast extends React.Component {
 
   makeWeatherRequest(props) {
     const { city } = queryString.parse(props.location.search);
-    api.fetchFiveDayWeather(city).then(data => {
+    fetchFiveDayWeather(city).then(data => {
       if (data === null) {
         return this.setState(() => ({
           error: 'There was an error, the city might not be valid.',
@@ -103,4 +103,4 @@ class Forecast extends React.Component {
   }
 }
 
-module.exports = Forecast;
+export default Forecast;

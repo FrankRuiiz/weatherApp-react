@@ -1,13 +1,10 @@
-const React = require('react');
-const ReactRouter = require('react-router-dom');
-const Router = ReactRouter.BrowserRouter;
-const Route = ReactRouter.Route;
-const Switch = ReactRouter.Switch;
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const Header = require('./Header');
-const Home = require('./Home');
-const Forecast = require('./Forecast');
-const Details = require('./Details');
+import Header from './Header';
+import Home from './Home';
+import Forecast from './Forecast';
+import Details from './Details';
 
 class App extends React.Component {
   render() {
