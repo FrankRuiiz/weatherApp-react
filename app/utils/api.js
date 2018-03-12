@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const API_KEY = '4f3b63ed27461e8bbf8c08f24bb45840';
 
 // export function fetchCurrentWeather(location) {
