@@ -40,22 +40,20 @@ class Forecast extends React.Component {
     this.makeWeatherRequest(this.props);
   }
 
-  makeWeatherRequest = props => {
+  makeWeatherRequest = async props => {
     const { city } = queryString.parse(props.location.search);
-    fetchFiveDayWeather(city).then(data => {
-      if (data === null) {
-        return this.setState(() => ({
-          error: 'There was an error, the city might not be valid.',
-          loading: false
-        }));
-      }
-
-      this.setState(() => ({
-        error: null,
-        data: data,
+    const weather = await fetchFiveDayWeather(city);
+    if (weather === null) {
+      return this.setState(() => ({
+        error: 'There was an error, the city might not be valid.',
         loading: false
       }));
-    });
+    }
+    this.setState(() => ({
+      error: null,
+      data: weather,
+      loading: false
+    }));
   };
 
   handleDayClick = city => {

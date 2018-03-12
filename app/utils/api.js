@@ -9,9 +9,13 @@ const API_KEY = '4f3b63ed27461e8bbf8c08f24bb45840';
 //   return axios.get(encodedURI).then(({ data }) => data);
 // }
 
-export function fetchFiveDayWeather(location) {
-  var encodedURI = window.encodeURI(
+export async function fetchFiveDayWeather(location) {
+  const encodedURI = window.encodeURI(
     `http://api.openweathermap.org/data/2.5/forecast/daily?q=${location}&type=accurate&APPID=${API_KEY}&cnt=5`
   );
-  return axios.get(encodedURI).then(({ data }) => data);
+  const response = await fetch(encodedURI).catch(error => {
+    console.log('error in fetchFiveDayWeather', error);
+  });
+  const weather = await response.json();
+  return weather;
 }
